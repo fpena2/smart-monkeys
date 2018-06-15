@@ -25,10 +25,6 @@ public:
     }
   }
 
-  // Job* getStack(){
-  //   return insideData;
-  // }
-
   bool checkEmpty() {
     if (insideData.size() == 0) {
       return true;

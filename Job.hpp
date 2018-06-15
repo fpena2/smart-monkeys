@@ -3,7 +3,7 @@
 #include <stdlib.h> /* srand, rand */
 #include <time.h>   /* time */
 #include <vector>
-#include <numeric> /* accumulate */ 
+#include <numeric> /* accumulate */
 
 using namespace std;
 
@@ -20,7 +20,8 @@ public:
       task.push_back(rand() % 10 + 1);
     }
     duration = accumulate(task.begin(), task.end(), 0);
-  };
+  }
+
   void assignWorker(int workerID) { jobOwnerID = workerID; }
 
   void print() {
