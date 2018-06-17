@@ -43,8 +43,8 @@ public:
 
   void printStack() {
     cout << "Stack Name: " + name << endl;
-    for (Job obj : insideData) {
-      obj.print();
+    for (Job element : insideData) {
+      element.print();
     }
     cout << endl;
   }
