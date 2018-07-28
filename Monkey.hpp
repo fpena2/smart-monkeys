@@ -10,9 +10,6 @@ private:
   Stacks *stackLocation;
 
 public:
-  // Muxtex lock utilized to prevent threads from accessing critical data
-  pthread_mutex_t protectMonkeyJobs = PTHREAD_MUTEX_INITIALIZER;
-
   Monkey(){};
   Monkey(int IDnumber, Stacks *location)
       : ID(IDnumber), stackLocation(location){};

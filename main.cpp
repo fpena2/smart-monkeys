@@ -1,3 +1,5 @@
+// g++ -Wall -pthread main.cpp
+
 #include "Monkey.hpp"
 #include "Stacks.hpp"
 #include <iostream>
@@ -5,6 +7,9 @@
 using namespace std;
 
 static void *MonkeyWork(void *param);
+
+// Muxtex lock utilized to prevent threads from accessing critical data
+pthread_mutex_t protectMonkeyJobs = PTHREAD_MUTEX_INITIALIZER;
 
 int main() {
   srand(time(NULL));
@@ -35,13 +40,17 @@ int main() {
 static void *MonkeyWork(void *param) {
   Monkey *aMonkeyPointer = (Monkey *)param;
 
-  pthread_mutex_lock(&(aMonkeyPointer->protectMonkeyJobs));
+  // Securing the critical section--area which is should be
+  // accessed by a thread at a time.
+  pthread_mutex_lock(&protectMonkeyJobs);
 
   printf("Hey! I am monkey #: %i\n", aMonkeyPointer->getMonkeyID());
+  // When a monkey starts working, it will remove the last element of the Stack
   aMonkeyPointer->getStackLocation()->removeData();
   aMonkeyPointer->getStackLocation()->printStack();
 
-  pthread_mutex_unlock(&(aMonkeyPointer->protectMonkeyJobs));
+
+  pthread_mutex_unlock(&protectMonkeyJobs);
 
   pthread_exit(NULL);
 }

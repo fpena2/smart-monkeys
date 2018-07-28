@@ -25,9 +25,9 @@ public:
   void assignWorker(int workerID) { jobOwnerID = workerID; }
 
   void print() {
-    cout << "Job ID: " << jobID << endl;
+    cout << "\nJob ID: " << jobID << endl;
     cout << "Length: " << duration << endl;
-    cout << "Data: " << endl;
+    cout << "Data: ";
     for (int element : task) {
       cout << element << " ";
     }
